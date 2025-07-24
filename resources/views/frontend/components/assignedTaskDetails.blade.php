@@ -70,6 +70,7 @@
         </div>
     </div>
 </div>
+{{--
 <script>
 
     function getTime() {
@@ -86,4 +87,50 @@
         document.getElementById("getEndTime").disabled = true;
     }
 
+</script> --}}
+
+<script>
+    function getTime() {
+        let start = new Date().getMinutes();
+
+        fetch('/task/start', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': '{{ csrf_token() }}'
+            },
+            body: JSON.stringify({
+                start_time: start
+            })
+        })
+            .then(res => {
+                document.getElementById("getCurrentTime").disabled = true;
+            })
+            .catch(err => {
+                console.log("Start error:", err);
+            });
+    }
+
+    function getEndTime() {
+        let end = new Date().getMinutes();
+
+        fetch('/task/end', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': '{{ csrf_token() }}'
+            },
+            body: JSON.stringify({
+                end_time: end
+            })
+        })
+            .then(res => res.json())
+            .then(data => {
+                document.getElementById("timeTaken").innerText = data.time_taken;
+                document.getElementById("getEndTime").disabled = true;
+            })
+            .catch(error => {
+                console.log("End error:", error);
+            });
+    }
 </script>

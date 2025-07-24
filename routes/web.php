@@ -96,6 +96,10 @@ Route::name('frontend.')->group(function () {
 
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
+    Route::post('/task/start', [TasksController::class, 'storeStartTime']);
+
+    Route::post('/task/end', [TasksController::class, 'storeEndTime']);
+
 });
 
 //

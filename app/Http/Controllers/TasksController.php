@@ -128,6 +128,29 @@ class TasksController extends Controller
         return response()->json(['success' => true]);
     }
 
+    public function storeStartTime(Request $request)
+    {
+        $startTime = $request->start_time;
+        session(['task_start' => $startTime]);
+
+        return response()->json([
+            'message' => 'Start time saved'
+        ]);
+    }
+
+    public function storeEndTime(Request $request)
+    {
+        $startTime = session('task_start');
+        $endTime = $request->end_time;
+
+        $timeTaken = $endTime - $startTime;
+
+        return response()->json([
+            'time_taken' => $timeTaken
+        ]);
+    }
+
+
 }
 
 
