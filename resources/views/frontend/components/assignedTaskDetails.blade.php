@@ -70,24 +70,6 @@
         </div>
     </div>
 </div>
-{{--
-<script>
-
-    function getTime() {
-        const getCurrentTime = new Date().getMinutes();
-        localStorage.setItem("currentTime", getCurrentTime);
-        document.getElementById("getCurrentTime").disabled = true;
-    }
-
-    function getEndTime() {
-        const taskEndTime = new Date().getMinutes();
-        const taskStartedTime = localStorage.getItem("currentTime");
-        const timeTaken = taskEndTime - taskStartedTime;
-        document.getElementById("timeTaken").innerText = timeTaken;
-        document.getElementById("getEndTime").disabled = true;
-    }
-
-</script> --}}
 
 <script>
     function getTime() {
